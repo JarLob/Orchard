@@ -39,7 +39,7 @@ jobs:
       matrix:
         # Supported options are ['csharp', 'cpp', 'go', 'java', 'javascript', 'python']
         # https://docs.github.com/en/github/finding-security-vulnerabilities-and-errors-in-your-code/configuring-code-scanning#overriding-automatic-language-detection
-        language: ['javascript','csharp','cpp']
+        language: ['javascript','csharp']
 
     steps:
     - uses: actions/checkout@v2
@@ -61,6 +61,7 @@ jobs:
       uses: microsoft/setup-msbuild@v1.0.2
     - run: |
         ./build.cmd
+        msbuild -target:Clean
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v1
